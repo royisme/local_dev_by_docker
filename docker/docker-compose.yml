@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  os:
+    image: vitamin/alpine:3.6
+    labels:
+      com.vitamin.description: "base os for a vitamin"
+      com.vitamin.department: "vitamin department"
+      com.vitamin.release: "v1.0"
+    build: 
+      context: ./os/alpine
+       
+  web:
+    image: vitamin/nginx:1.13
+    build:
+      context: ./services/nginx
+
+  # php7:
+  #   build: 
+  #     context: ./services/php
+  #     dockerfile: Dockerfile
+  #     args:
+  #       dev_user: roy
+  #   depends_on:
+  #     - os
+  #     - nginx
+  #     - mysql
