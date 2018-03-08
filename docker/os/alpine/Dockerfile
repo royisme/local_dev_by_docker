@@ -1,5 +1,5 @@
 FROM alpine:3.6
-LABEL roy zhushaoqing@ispied.com
+LABEL maintainer="roy<zhushaoqing@ispied.com>"
 
 # 换为国内镜像，以加速docker image制作速度，非中国镜内用户请注释掉下一行
 RUN echo 'http://mirrors.aliyun.com/alpine/v3.6/main' > /etc/apk/repositories \

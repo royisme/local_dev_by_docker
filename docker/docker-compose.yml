@@ -1,19 +1,22 @@
 version: '3'
 
 services:
-  os:
-    image: vitamin/alpine:3.6
-    labels:
-      com.vitamin.description: "base os for a vitamin"
-      com.vitamin.department: "vitamin department"
-      com.vitamin.release: "v1.0"
-    build: 
-      context: ./os/alpine
+  # os:
+  #   image: vitamin/alpine:3.6
+  #   labels:
+  #     com.vitamin.description: "base os for a vitamin"
+  #     com.vitamin.department: "vitamin department"
+  #     com.vitamin.release: "v1.0"
+  #   build: 
+  #     context: ./os/alpine
        
   web:
     image: vitamin/nginx:1.13
     build:
       context: ./services/nginx
+      args:
+        version: 1.13
+o
 
   # php7:
   #   build: 
