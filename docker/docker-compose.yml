@@ -10,20 +10,25 @@ services:
   #   build: 
   #     context: ./os/alpine
        
-  web:
-    image: vitamin/nginx:1.13
-    build:
-      context: ./services/nginx
-      args:
-        version: 1.13
-o
-
-  # php7:
-  #   build: 
-  #     context: ./services/php
-  #     dockerfile: Dockerfile
+  # web:
+  #   image: vitamin/nginx:1.13
+  #   build:
+  #     context: ./services/nginx
   #     args:
-  #       dev_user: roy
+  #       version: 1.13
+  #   volumes:
+  #     - ../deploy/config/nginx/nginx.conf:/etc/nginx/nginx.conf:rw
+  #     - ../deploy/config/nginx/conf.d/:/etc/nginx/conf.d/:rw
+  php7:
+    image: vitamin/php:7.1
+    build: 
+      context: ./services/php
+      dockerfile: Dockerfile
+      args:
+        dev_user: roy
+    volumes:
+      - ../deploy/config/php/php.ini:/etx/php/php.ini:rw
+      - ../deploy/config/php/conf.d/:/etc/php/conf.d:rw
   #   depends_on:
   #     - os
   #     - nginx

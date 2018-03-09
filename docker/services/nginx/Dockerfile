@@ -89,9 +89,9 @@ RUN apk add --no-cache --virtual .build-deps \
     && adduser -u 82 -D -S -G www-data www-data 
 # Add additional binaries into PATH for convenience
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin1
+RUN ln -sf /usr/local/openresty/nginx/conf /etc/nginx
 
 EXPOSE 80 443
-VOLUME . /etc/nginx/conf.d
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx"]
