@@ -72,12 +72,26 @@ RUN apk add php7@community \
 # 从国内镜像安装composer，并配置成默认从国内镜像安装composer包
 RUN php -r "readfile('http://install.phpcomposer.com/installer');" | php -- --install-dir=/bin/ --filename=composer
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
-RUN mkdir /apps && ln -sf /etc/php7 /etc/php
+RUN mkdir /apps \ 
+        && ln -sf /etc/php7 /etc/php \
+        && ln -sf /usr/sbin/php-fpm7 /usr/bin/php-fpm \
+        && ln -sf /var/log/php7 /var/log/php \
+        && chown -R www-data:www-data /etc/php \
+        && chown -R www-data:www-data /var/log/php \
+        && chown -R www-data:www-data /etc/php \ 
+        && composer self-update
 VOLUME /apps
-WORKDIR /apps
 
+WORKDIR /apps
 # 端口号配置
 EXPOSE 9000
 
+# User/Group
+ENV VITAMIN_USER="vitaminbox" \
+	VITAMIN_GROUP="vitaminbox" \
+	VITAMIN_UID="1000" \
+        VITAMIN_GID="1000"
+
+
 # 容器命令执行
-#CMD ["php-fpm","-c","/etc/php/php-fpm.conf"]
+CMD ["php-fpm","-c","/etc/php/php-fpm.conf"]
