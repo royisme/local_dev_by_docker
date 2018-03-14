@@ -51,6 +51,7 @@ services:
       - ${HOST_PATH_NGINX_CONFIG_DIR}/nginx.conf:/etc/nginx/nginx.conf:rw
       - ${HOST_PATH_NGINX_CONFIG_DIR}/conf.d/:/etc/nginx/conf.d/:rw
       - ${HOST_PATH_DEPLOY_DATADIR}:/apps:rw
+      - ${HOST_PATH_RUN_DIR}/nginx:/var/run/nginx:rw
     environment:
       - NEW_UID
       - NEW_GID
@@ -69,10 +70,12 @@ services:
       args:
         dev_user: roy
     volumes:
-      - ${HOST_PATH_PHP_CONFIG_DIR}/php.ini:/etc/php/php.ini:rw
-      - ${HOST_PATH_PHP_CONFIG_DIR}/php-fpm.d:/etc/php/php-fpm.d:rw
+      - ${HOST_PATH_PHP_CONFIG_DIR}/php.ini:/etc/php/php.ini:ro
+      - ${HOST_PATH_PHP_CONFIG_DIR}/php-fpm.d:/etc/php/php-fpm.d:ro
+      - ${HOST_PATH_PHP_CONFIG_DIR}/php-fpm.conf:/etc/php/php-fpm.conf:ro
       - ${HOST_LOG_PHP_DIR}:/var/log/php:rw
       - ${HOST_PATH_DEPLOY_DATADIR}:/apps:rw
+      - ${HOST_PATH_RUN_DIR}/php:/var/run/php:rw
     environment:
       - NEW_UID
       - NEW_GID
@@ -94,6 +97,7 @@ services:
       - ${HOST_PATH_MYSQL_DATADIR}:/var/lib/mysql:rw
       - ${HOST_LOG_MYSQL_DIR}}:/var/log/mysql:rw
       - ${HOST_CONFIG_MYSQL_DIR}/my.cnf:/etc/my.cnf:rw
+      - ${HOST_PATH_RUN_DIR}/mysql:/var/run/mysql:rw
     depends_on:
       - os
       - bind

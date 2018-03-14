@@ -11,5 +11,5 @@ RUN apk --update add bind
 COPY ./scripts/init.sh /
 EXPOSE 53
 EXPOSE 53/udp
-
+RUN ["chmod", "+x","/init.sh" ]
 ENTRYPOINT ["/init.sh"]
