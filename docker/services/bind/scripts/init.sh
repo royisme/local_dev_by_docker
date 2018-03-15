@@ -246,4 +246,4 @@ fi
 ### Start
 ###
 log "info" "Starting $( named -V | grep -oiE '^BIND[[:space:]]+[0-9.]+' )"
-exec /usr/sbin/named -4 -c /etc/bind/named.conf -u bind -f
+exec /usr/sbin/named -4 -c /etc/bind/named.conf -u root -f
