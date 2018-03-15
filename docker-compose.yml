@@ -93,9 +93,14 @@ services:
       dockerfile: Dockerfile
       args:
         dev_user: roy
+    environment:
+      - MYSQL_ROOT_PASSWORD=weitamingdb
+      - MYSQL_DATABASE=weitaming_dev
+      - MYSQL_USER=developer
+      - MYSQL_PASSWORD=developer
     volumes:
       - ${HOST_PATH_MYSQL_DATADIR}:/var/lib/mysql:rw
-      - ${HOST_LOG_MYSQL_DIR}}:/var/log/mysql:rw
+      - ${HOST_LOG_MYSQL_DIR}:/var/log/mysql:rw
       - ${HOST_CONFIG_MYSQL_DIR}/my.cnf:/etc/my.cnf:rw
       - ${HOST_PATH_RUN_DIR}/mysql:/var/run/mysql:rw
     depends_on:
