@@ -49,6 +49,11 @@ build-iPhoneSimulator/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 .vscode
-/runtime/*
-/runtime/logs/*
-/runtime/tmp/*
+runtime/data/*
+runtime/logs/*
+runtime/tmp/*
+runtime/data/mysql/ibdata1
+runtime/data/mysql/aria_log.00000001
+runtime/data/mysql/aria_log_control
+runtime/data/mysql/ib_logfile0
+runtime/data/mysql/mysql-bin.index
