@@ -85,6 +85,7 @@ RUN mkdir /apps \
         && chown -R www-data:www-data /etc/php \
         && chown -R www-data:www-data /var/log/php \
         && chown -R www-data:www-data /etc/php \ 
+        && chown -R www-data:www-data /apps \
         && composer self-update
 VOLUME /apps
 
