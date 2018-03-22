@@ -50,7 +50,7 @@ build-iPhoneSimulator/
 .rvmrc
 .vscode
 runtime/data/*
-runtime/logs/*
+runtime/logs/*/*.log
 runtime/tmp/*
 runtime/data/mysql/ibdata1
 runtime/data/mysql/aria_log.00000001
