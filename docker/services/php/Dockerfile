@@ -66,7 +66,13 @@ RUN apk add php7@community \
         php7-xsl@community \
         php7-ldap@community \
         php7-openssl@community \
-        php7-bcmath@community
+        php7-bcmath@community \ 
+        php7-xml@community \
+        php7-intl@community \
+        php7-simplexml@community \
+        php7-xmlreader@community \
+        php7-xmlwriter@community \
+        php7-tokenizer@community
 
 
 # 从国内镜像安装composer，并配置成默认从国内镜像安装composer包

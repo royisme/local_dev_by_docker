@@ -69,7 +69,7 @@ services:
       - os
     #  - bind
     ports:
-      - 80:80
+      - ${NGINX_CONFIG_PROT:-80}:80
   php7:
     image: vitamin/php:7.1
     build: 
@@ -82,7 +82,7 @@ services:
       - ${HOST_PATH_PHP_CONFIG_DIR}/php-fpm.d:/etc/php/php-fpm.d:ro
       - ${HOST_PATH_PHP_CONFIG_DIR}/php-fpm.conf:/etc/php/php-fpm.conf:ro
       - ${HOST_LOG_PHP_DIR}:/var/log/php:rw
-      - ${HOST_PATH_DEPLOY_DATADIR}:/apps:rw
+      - ${HOST_PATH_DEPLOY_DATADIR}/${HOST_CODE_DIR}:/apps:rw
       - ${HOST_PATH_RUN_DIR}/php:/var/run/php:rw
     environment:
       - NEW_UID
@@ -117,3 +117,20 @@ services:
     networks:
       app_net:
         ipv4_address: 172.26.100.12
+  redis:
+    image: vitamin/redis:4.0.0
+    build: 
+      context: ${HOST_DEV_BOX_PATH}/docker/services/redis
+      dockerfile: Dockerfile
+      args:
+        dev_user: roy
+    volumes:
+      - ${HOST_PATH_REDIS_DATADIR}:/data/:rw
+      - ${HOST_CONFIG_REDIS_FILE}:/etc/redis.conf:rw
+      #- ${HOST_PATH_RUN_DIR}/mysql:/var/run/mysql:rw
+    depends_on:
+      - os
+    #  - bind
+    networks:
+      app_net:
+        ipv4_address: 172.26.100.16

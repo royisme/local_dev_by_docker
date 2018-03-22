@@ -57,3 +57,5 @@ runtime/data/mysql/aria_log.00000001
 runtime/data/mysql/aria_log_control
 runtime/data/mysql/ib_logfile0
 runtime/data/mysql/mysql-bin.index
+runtime/data/mysql/mysql-bin.index
+deploy/code/*
